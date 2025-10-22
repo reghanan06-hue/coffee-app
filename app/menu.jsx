@@ -68,8 +68,10 @@ export default function menu() {
               <Text style={styles.itemName}>{item.name}</Text>
               <Text style={styles.itemPrice}>{item.price}</Text>
             </View>
+            <TouchableOpacity style={styles.addButton}>
+              <Ionicons name="add" size={25} color="#fff" />
+            </TouchableOpacity>
           </View>
-          
         )}
       />
     </View>
@@ -123,5 +125,12 @@ const styles = StyleSheet.create({
     color: "#7A6C5D",
     fontSize: 17,
   },
-
+  addButton: {
+    backgroundColor: "#4E3B2C",
+    borderRadius: 25,
+    width: 45,
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
