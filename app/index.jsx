@@ -1,9 +1,11 @@
+import { router, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
   const [isOpen,setisOpen] = useState(false);
   const [visitors, setVisitors] = useState(0);
+  const router =useRouter();
 
   const displayVisitors =()=>{
     setVisitors(visitors+1);
@@ -21,7 +23,7 @@ export default function App() {
  >
   
       <Image
-       source={require("@/assets/images/cf.png")}
+       source={require("../assets/images/cf.png")}
        style={styles.imageCof}
        ></Image>
 
@@ -34,7 +36,8 @@ export default function App() {
       
       <TouchableOpacity
         style={styles.bttnMenu}
-        onPress={() => alert("voir menu") }   
+        // onPress={() => alert("voir menu") }   
+        onPress={()=>router.push("/menu")}
       >
         <Text style={styles.textBttn} 
       
@@ -63,17 +66,17 @@ export default function App() {
 
     }}>
   <Image
-       source={require("@/assets/images/person.png")}
+       source={require("../assets/images/person.png")}
        style={styles.imagVisitor}
        ></Image>
 
   <Image
-       source={require("@/assets/images/person.png")}
+       source={require("../assets/images/person.png")}
        style={styles.imagVisitor}
        ></Image>
 
   <Image
-       source={require("@/assets/images/person.png")}
+       source={require("../assets/images/person.png")}
               style={styles.imagVisitor}
 
        ></Image>
