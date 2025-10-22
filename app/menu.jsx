@@ -64,7 +64,12 @@ export default function menu() {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Image source={item.image} style={styles.image} />
+            <View style={styles.textContainer}>
+              <Text style={styles.itemName}>{item.name}</Text>
+              <Text style={styles.itemPrice}>{item.price}</Text>
+            </View>
           </View>
+          
         )}
       />
     </View>
@@ -105,4 +110,18 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 35,
   },
+  textContainer: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  itemName: {
+    fontSize: 23,
+    fontWeight: "600",
+    color: "#3B2F2F",
+  },
+  itemPrice: {
+    color: "#7A6C5D",
+    fontSize: 17,
+  },
+
 });
