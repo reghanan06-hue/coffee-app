@@ -1,10 +1,13 @@
 {
   "expo": {
-    "scheme": "acme",
-    "plugins": [
-      "expo-router"
-    ],
     "name": "coffee-app",
-    "slug": "coffee-app"
+    "slug": "coffee-app",
+    "scheme": "acme",
+    "plugins": ["expo-router"],
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
   }
 }
