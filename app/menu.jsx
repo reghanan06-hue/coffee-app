@@ -18,30 +18,35 @@ export default function menu() {
       name: "Espresso",
       price: "10 MAD",
       image: require("../assets/images/Espresso.jpg"),
+      description: "Un café court et intense préparé en faisant passer de l’eau chaude sous pression à travers du café moulu très fin. C’est la base de nombreux autres cafés comme le cappuccino et le latte.",
     },
     {
       id: 2,
       name: "Cappuccino",
       price: "18 MAD",
       image: require("../assets/images/Cappuccino.jpg"),
+      description: "Un mélange équilibré d’espresso, de lait chaud et de mousse onctueuse. Il offre une texture crémeuse et un goût riche, souvent saupoudré de cacao.",
     },
     {
       id: 3,
       name: "Latte",
       price: "16 MAD",
       image: require("../assets/images/Latte.jpg"),
+      description: "Un espresso adouci avec une grande quantité de lait chaud et une fine couche de mousse. Parfait pour ceux qui préfèrent un café doux et onctueux.",
     },
     {
       id: 4,
       name: "Cold Brew",
       price: "20 MAD",
       image: require("../assets/images/ColdBrew.jpg"),
+      description: "Infusé à froid pendant plusieurs heures, ce café est doux, rafraîchissant et moins acide. Idéal pour les journées chaudes.",
     },
     {
       id: 5,
       name: "Mocha",
       price: "20 MAD",
       image: require("../assets/images/Mocha.jpg"),
+      description: "Un délicieux mélange d’espresso, de lait chaud et de chocolat. Crémeux, sucré et gourmand — le choix parfait pour les amateurs de café et de cacao.",
     },
   ];
 
@@ -50,9 +55,8 @@ export default function menu() {
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons
-            style={styles.headerIcon}
             name="arrow-back"
-            size={30}
+            size={33}
             color="#3B2F2F"
           />
         </TouchableOpacity>
@@ -68,7 +72,15 @@ export default function menu() {
               <Text style={styles.itemName}>{item.name}</Text>
               <Text style={styles.itemPrice}>{item.price}</Text>
             </View>
-            <TouchableOpacity style={styles.addButton}>
+            <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: "/detail",
+                  params: { name: item.name, price: item.price ,image: item.image,description: item.description},
+                })
+              }
+              style={styles.addButton}
+            >
               <Ionicons name="add" size={25} color="#fff" />
             </TouchableOpacity>
           </View>
@@ -95,9 +107,6 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
     color: "#3B2F2F",
-  },
-  headerIcon: {
-    cursor: "pointer",
   },
   card: {
     backgroundColor: "#F2E6D8",
