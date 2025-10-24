@@ -1,66 +1,59 @@
-import { Link } from 'expo-router';
-import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-//import { useRouter } from 'expo-router';
+import { router, useRouter } from "expo-router";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Animated,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  const [isOpen, setisOpen] = useState(false);
-  const [visitors, setVisitors] = useState(0);
-  //const router = useRouter();
+  const router = useRouter();
+  const [visits, setVisits] = useState(0);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const displayVisitors = () => {
-    setVisitors(visitors + 1);
-  }
+  useEffect(() => {
+    const loadVisits = async () => {
+      try {
+        const savedVisits = await AsyncStorage.getItem("visits");
+        const currentVisits = savedVisits ? parseInt(savedVisits) + 1 : 1;
+        setVisits(currentVisits);
+        await AsyncStorage.setItem("visits", currentVisits.toString());
+      } catch (error) {
+        console.log("Erreur lors du chargement :", error);
+      }
+    };
+
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+
+    loadVisits();
+  }, []);
+
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: "#F5E6CA"
-        ,
-      }}
-
-    >
-
-      <View
-        style={styles.welcomAPP}
-      >
-
+    <ScrollView style={{ flex: 1, backgroundColor: "#FAF3E0" }}>
+      <Animated.View style={[styles.welcomAPP, { opacity: fadeAnim }]}>
         <Image
           source={require("../assets/images/cf.png")}
           style={styles.imageCof}
         />
-
         <Text style={styles.textNameApp}>BrewTime Coffee App</Text>
-        <Text style={styles.textWelcome}>Brienvenue</Text>
-
-      </View>
+      </Animated.View>
 
       <View style={styles.containerBttn}>
-        <Link href={'/menu'} asChild>
-          <TouchableOpacity
-            style={styles.bttnMenu}
-          // onPress={() => router.push("/order")}
-          >
-            <Text style={styles.textBttn}
-
-            >Voir menu</Text>
-          </TouchableOpacity>
-        </Link>
-
-
-
-
-
         <TouchableOpacity
           style={styles.bttnMenu}
-
-          onPress={displayVisitors}
-
+          onPress={() => router.push("/menu")}
         >
-
-          <Text style={styles.textBttn}>Nombre du visiteur</Text>
+          <Text style={styles.textBttn}>Voir menu</Text>
         </TouchableOpacity>
-
       </View>
 
       <View
@@ -69,72 +62,63 @@ export default function App() {
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 40,
-
-        }}>
+        }}
+      >
         <Image
           source={require("../assets/images/person.png")}
           style={styles.imagVisitor}
         />
-
-
-        <Text style={styles.textvisiteur}> {visitors}
-
-          <Text style={styles.textPerson}> Person</Text>
+        <Text style={styles.textvisiteur}>
+          {" "}
+          {visits}
+          <Text style={styles.textPerson}> Visitors</Text>
         </Text>
-
       </View>
-
-
-
     </ScrollView>
-
-
   );
 }
+
 const styles = StyleSheet.create({
   welcomAPP: {
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 100,
-    paddingTop:50,
-
+    paddingTop: 50,
   },
   imageCof: {
     width: 294,
     height: 294,
-    marginTop: 40,
-
+    marginTop: 20,
     borderRadius: 15,
     shadowOpacity: 0.5,
     shadowRadius: 100,
   },
   textNameApp: {
-    color: "#6F4E37",
-    fontWeight: "bold", fontSize: 24,
-    textAlign: "center"
+    color: "#4E3B2C",
+    fontWeight: "bold",
+    fontSize: 24,
+    textAlign: "center",
   },
 
   textWelcome: {
-    color: "#B6771D"
+    color: "#B6771D",
   },
 
   bttnMenu: {
     width: 264,
     height: 64,
-    backgroundColor: "#6F4E37",
+    backgroundColor: "#4E3B2C",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
     marginBottom: 20,
   },
 
-  containerBttn:
-  {
+  containerBttn: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
-    flexDirection: "row",
+    marginBottom: 80,
   },
 
   bttMenu: {
@@ -143,32 +127,25 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  textBttn: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
+  textBttn: { color: "white", fontSize: 20, fontWeight: "bold" },
 
   imagVisitor: {
     width: 44,
     height: 44,
-    borderRadius: 15
+    borderRadius: 15,
   },
 
   textvisiteur: {
     color: "#B6771D",
     marginLeft: 20,
     fontWeight: "bold",
-    fontSize: 32
+    fontSize: 32,
   },
 
   textPerson: {
-    color: "black",
+    color: "#4E3B2C",
     marginLeft: 20,
     fontWeight: "bold",
-    fontSize: 24
-  }
-
-
-})
+    fontSize: 24,
+  },
+});
