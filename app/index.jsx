@@ -96,13 +96,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 100,
-    marginTop: 10,
+    paddingTop:50,
 
   },
   imageCof: {
     width: 294,
     height: 294,
-    marginTop: 20,
+    marginTop: 40,
+
     borderRadius: 15,
     shadowOpacity: 0.5,
     shadowRadius: 100,
