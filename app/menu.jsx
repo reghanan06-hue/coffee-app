@@ -16,35 +16,35 @@ export default function menu() {
     {
       id: 1,
       name: "Espresso",
-      price: "10 MAD",
+      price: 10,
       image: require("../assets/images/Espresso.jpg"),
       description: "Un café court et intense préparé en faisant passer de l’eau chaude sous pression à travers du café moulu très fin. C’est la base de nombreux autres cafés comme le cappuccino et le latte.",
     },
     {
       id: 2,
       name: "Cappuccino",
-      price: "18 MAD",
+      price: 18,
       image: require("../assets/images/Cappuccino.jpg"),
       description: "Un mélange équilibré d’espresso, de lait chaud et de mousse onctueuse. Il offre une texture crémeuse et un goût riche, souvent saupoudré de cacao.",
     },
     {
       id: 3,
       name: "Latte",
-      price: "16 MAD",
+      price: 16,
       image: require("../assets/images/Latte.jpg"),
       description: "Un espresso adouci avec une grande quantité de lait chaud et une fine couche de mousse. Parfait pour ceux qui préfèrent un café doux et onctueux.",
     },
     {
       id: 4,
       name: "Cold Brew",
-      price: "20 MAD",
+      price: 20,
       image: require("../assets/images/ColdBrew.jpg"),
       description: "Infusé à froid pendant plusieurs heures, ce café est doux, rafraîchissant et moins acide. Idéal pour les journées chaudes.",
     },
     {
       id: 5,
       name: "Mocha",
-      price: "20 MAD",
+      price: 20,
       image: require("../assets/images/Mocha.jpg"),
       description: "Un délicieux mélange d’espresso, de lait chaud et de chocolat. Crémeux, sucré et gourmand — le choix parfait pour les amateurs de café et de cacao.",
     },
@@ -70,7 +70,7 @@ export default function menu() {
             <Image source={item.image} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.itemName}>{item.name}</Text>
-              <Text style={styles.itemPrice}>{item.price}</Text>
+              <Text style={styles.itemPrice}>{item.price} MAD</Text>
             </View>
             <TouchableOpacity
               onPress={() =>
