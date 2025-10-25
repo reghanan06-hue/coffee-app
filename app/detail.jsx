@@ -1,16 +1,19 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-//import React, { useEffect } from "react";
 
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 
 export default function detail() {
-    const router = useRouter();
-    const [qte, setQte] = useState(0);
-    const [sugar, setSugar] = useState(0);
+  const router = useRouter();
+  const [qte, setQte] = useState(0);
+  const [sugar, setSugar] = useState(0);
 
   const { name, price, image, description } = useLocalSearchParams();
+ 
+
+   
  
   const displayIncQte = () => {
     setQte(qte + 1);
@@ -18,14 +21,22 @@ export default function detail() {
   const displayDesCcQte = () => {
     setQte((qte)=> (qte === 0 ? qte :  qte - 1));
   }
+useEffect(() => {
+    if (sugar === 5) {
+      alert("Number of sugar pieces is limited to 5");
+   
+    }
+  }, [sugar]);
 
   const displayPusNbreSugar = () => {
-    setSugar((sugar)=> (sugar == 5  ? sugar :  sugar + 1));
-  }
+    setSugar((sugar) => (sugar < 5 ? sugar + 1 : sugar));
+  };
+
 
   const displayMoinsNbreSugar = () => {
     setSugar((sugar)=> (sugar === 0 ? sugar :  sugar - 1));
   }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
