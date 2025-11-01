@@ -101,10 +101,23 @@ useEffect(() => {
          <Text style={styles.valeurPrice}>{qte * price } </Text>
         <Text style={styles.labelPrice}>MAD</Text>
 
-
+     
        </View>
+    <View >
+      <TouchableOpacity
+        style={styles.bttn_team}
+              onPress={
+                () => router.push({
+                  pathname: "/delivery",
+                })
+              } >
+       
+                 <Text style={styles.textTeam}>add order</Text>
+     </TouchableOpacity>
     
-  
+       
+    </View>
+    
 </View>
 
   
@@ -146,8 +159,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 25,
-    marginTop:30,
+    marginBottom: 10,
+    marginTop:10,
   },
  Textcup:{
   color:"#FB681F",
@@ -198,8 +211,29 @@ const styles = StyleSheet.create({
   valeurPrice:{
     fontSize:20,
     fontWeight:"bold",
-      color:"#FB681F",
+     color:"#FB681F",
+
+  },
+  containerBtnTeam:{
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 100,
+  },
+  bttn_team:{
+    width:200,
+    height:50,
+    borderRadius:16,
+    backgroundColor:"#6F4E37",
+    marginBottom:10,
+  },
+  textTeam:{
+    textAlign:"center",
+    color:"white",
+    fontWeight:"bold",
+    fontSize:20,
+    marginTop:8,
 
   }
+
 
 });

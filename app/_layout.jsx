@@ -6,6 +6,11 @@ export default function RootLayout() {
       <Stack.Screen name="index" />
       <Stack.Screen name="menu" />
       <Stack.Screen name="detail" />
+      <Stack.Screen name="teams" />
+      <Stack.Screen name="delivery" />
+
+
+
     </Stack>
   );
 }
